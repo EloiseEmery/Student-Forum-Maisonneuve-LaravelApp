@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+	/**
+	 * Récupérer un user par son id
+	 * @param $id
+	 */
+	static public function selectUser($id){
+		$query = User::Select('*')
+		->where('id', $id)
+		->get();
+		return $query;
+	}
 }

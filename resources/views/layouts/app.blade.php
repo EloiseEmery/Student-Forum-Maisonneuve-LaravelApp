@@ -18,14 +18,15 @@
 		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     </head>
     <body>
+		@php $locale = session()->get('locale'); @endphp
         <div class="d-flex" id="wrapper">
-            <!-- Sidebar-->
+			<!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom"><a href="{{ route('pages.home') }}"><img src="{{ URL::asset('assets/college-maisonneuve-etudiant.png') }}" alt="logo-etudiant" width="75px"/></a><br>Espace étudiant<br><small>Cmaisonneuve</small></div>
+				<div class="sidebar-heading border-bottom"><a href="{{ route('pages.home') }}"><img src="{{ URL::asset('assets/college-maisonneuve-etudiant.png') }}" alt="logo-etudiant" width="75px"/></a><br>@lang('lang.site_title')<br><small>Cmaisonneuve</small></div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('etudiants.index') }}">Les étudiants</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('pages.a-venir') }}">Forum</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('pages.a-venir') }}">Contact</a>
+					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('etudiants.index') }}">@lang('lang.menu_item_first')</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('article.index') }}">@lang('lang.menu_item_second')</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('pages.a-venir') }}">@lang('lang.menu_item_third')</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -38,13 +39,22 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-third" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connexion</a>
+                                    <a class="nav-link dropdown-toggle text-third" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('pages.a-venir') }}">Se connecter</a>
+									@guest
+										<a class="dropdown-item" href="{{ route('auth.login') }}">@lang('lang.menu_item_fourth')</a>
+									@else
+										<a class="dropdown-item" href="{{ route('auth.dashboard') }}">@lang('lang.menu_item_fifth')</a>
 										<div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{{ route('pages.a-venir') }}">Créer un compte</a>
+										<a class="dropdown-item" href="{{ route('auth.logout') }}">@lang('lang.menu_item_sixth')</a>
+									@endguest
                                     </div>
                                 </li>
+								<div class="row">
+									<li class="col-1 me-4"><a class="nav-link @if($locale == 'fr' ) text-primary @endif" href="{{ route('lang', 'fr') }}">Fr</a></li> 
+									<li class="mt-2 col-1">|</li>
+									<li class="col-1"><a class="nav-link @if($locale == 'en') text-primary @endif" href="{{ route('lang', 'en') }}">En</a></li>
+								</div>
                             </ul>
                         </div>
                     </div>
@@ -58,7 +68,7 @@
 				<footer class="bg-dark">
 				<p class="text-center pt-3 pb-3 mb-0"><small class="text-light">
 					3 800, rue Sherbrooke Est Montréal (Québec) H1X 2A2 | 514 254-7131<br>
-					Copyright © 2022 - Éloïse Emery - TP1 Laravel. Tous droits réservés.
+					Copyright © 2022 - Éloïse Emery - TP1 Laravel. @lang('lang.footer_copyright')
 				</small></p>
 				</footer>
             </div>
