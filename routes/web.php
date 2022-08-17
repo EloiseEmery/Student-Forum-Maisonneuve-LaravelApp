@@ -88,8 +88,3 @@ Route::put('document-edit/{document}', [DocumentController::class, 'update'])->n
 Route::get('documents-download/{document}', [DocumentController::class, 'download'])->name('document.download');
 // Supprimer un article
 Route::delete('documents/{document}', [DocumentController::class, 'destroy'])->name('document.delete');
-
-
-// TODO: langue affichage des articles/doc quand pas de trad fr
-
-// TODO: publier sur GItHub et webDev
