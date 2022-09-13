@@ -1,4 +1,4 @@
-# FORUM ÉTUDIANT DU COLLÈGE MAISONNEUVE
+# FORUM ÉTUDIANT 
 
 Prototype d'application d'un forum  pour les élèves du collège de Maisonneuve développé avec Laravel
 #
